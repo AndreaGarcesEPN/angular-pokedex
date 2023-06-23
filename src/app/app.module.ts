@@ -7,15 +7,18 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { ObservableComponent } from './observable/observable.component';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent],
+  declarations: [AppComponent, ToolbarComponent, ObservableComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    CategoriesModule
   ],
   providers: [],
   bootstrap: [AppComponent],
