@@ -1,1 +1,9 @@
-<p>category-card works!</p>
+<mat-card class="pokemon-type">
+    <mat-card-header>
+        <mat-card-title>{{pokemonType.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="pokemonType.imageUrl">
+    <mat-card-actions>
+        <button mat-button>Ver Pokemons</button>
+    </mat-card-actions>
+</mat-card>

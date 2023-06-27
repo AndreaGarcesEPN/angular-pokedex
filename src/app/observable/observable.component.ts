@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-observable',
   templateUrl: './observable.component.html',
   styleUrls: ['./observable.component.scss']
 })
-export class ObservableComponent implements OnInit {
+export class ObservableComponent implements OnInit, OnDestroy {
 
   constructor() { }
 
@@ -32,17 +32,23 @@ export class ObservableComponent implements OnInit {
     setTimeout(() => {
       observer.complete();
     }, 5000);
-  })
+  });
+
+  subscriber: Subscription;
 
   ngOnInit(): void {
-
-    this.obs.subscribe({
+    this.subscriber = this.obs.subscribe({
       next: (value) => console.log(value),
-      //error: (error) => console.log('Error' , error),
+      error: (error) => console.log('Error' , error),
       complete: () => console.log('El observer ha finalizado')
     });
     console.log('After subscribe'); //Suscribe no bloquea la ejecucion del codigo
+  }
 
+  ngOnDestroy(): void {
+    if(this.subscriber) {
+      this.subscriber.unsubscribe();
+    }
   }
 
 }
