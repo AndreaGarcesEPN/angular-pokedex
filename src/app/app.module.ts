@@ -12,6 +12,9 @@ import { CategoriesModule } from './categories/categories.module';
 import { RouterModule } from '@angular/router';
 import { CategoryListComponent } from './categories/category-list/category-list.component';
 import { PokemonListComponent } from './pokemons/pokemon-list/pokemon-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PokemonsModule } from './pokemons/pokemons.module';
 
 @NgModule({
   declarations: [AppComponent, ToolbarComponent, ObservableComponent],
@@ -21,11 +24,12 @@ import { PokemonListComponent } from './pokemons/pokemon-list/pokemon-list.compo
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    HttpClientModule,
     CategoriesModule,
+    PokemonsModule,
     RouterModule.forRoot([
-      { path: 'category-list', component: CategoryListComponent },
-      { path: 'pokemon-list', component: PokemonListComponent },
-      { path: '', redirectTo: '/category-list', pathMatch: 'full'}
+      { path: '', redirectTo: '/category-list', pathMatch: 'full' },
+      { path: '**', component: PageNotFoundComponent },
     ])
   ],
   providers: [],
