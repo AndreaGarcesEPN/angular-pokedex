@@ -10,7 +10,7 @@ export class PokemonListComponent implements OnInit {
 
   pokemonIds: string[];
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService,) { }
 
   ngOnInit(): void {
     this.pokemonService.getPokemonList().subscribe({
@@ -19,8 +19,7 @@ export class PokemonListComponent implements OnInit {
         data.results.forEach((item: any) => {
           this.pokemonIds.push(item.url.slice(0,-1).split('/').pop());
         });
-      }
-    })
+      },
+    });
   }
-
 }
