@@ -12,8 +12,7 @@ export class PokemonDetailComponent implements OnInit {
   @Input()
   pokemonDetail: string;
 
-  pokemonName: string;
-  pokemonImageUrl: string;
+  pokemonData: any;
 
   constructor(private pokemonService: PokemonService,
     private firestore: AngularFirestore) { }
@@ -22,17 +21,21 @@ export class PokemonDetailComponent implements OnInit {
 
     this.pokemonService.getPokemonDetails(Number(this.pokemonDetail)).subscribe({
       next: (data) => {
-        this.pokemonName = data.name;
-        this.pokemonImageUrl = data.sprites.front_default;
-        //console.log(JSON.stringify(data));
-        this.firestore.collection('pokemons').add({
+        /*this.pokemonName = data.name;
+        this.pokemonImageUrl = data.sprites.front_default;*/
+        this.pokemonData = data;
+        console.log(JSON.stringify(data));
+        /*this.firestore.collection('pokemons').add({ //Agregar documentos en la coleccion con un id autogenerado
           id: data.id,
           name: data.name,
         }).then((res) => {
           console.log(res);
         }).catch((e) => {
           console.log(e);
-        })
+        })*/
+        this.firestore.collection('pokemons').doc(data.id.toString()).set({
+          name: data.name,
+        });
       },
     })
 

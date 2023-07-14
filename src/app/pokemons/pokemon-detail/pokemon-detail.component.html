@@ -1,11 +1,10 @@
-<mat-card class="pokemon-card">
+<mat-card class="pokemon-card" *ngIf="pokemonData">
     <mat-card-header>
-      <mat-card-title>{{pokemonName | titlecase}}</mat-card-title>
+      <mat-card-title>{{pokemonData.name | titlecase}}</mat-card-title>
     </mat-card-header>
-    <img class="pokemon-img" mat-card-image [src]="pokemonImageUrl" [alt]="pokemonName">
-    <mat-card-content>
-
-    </mat-card-content>
+    <img class="pokemon-img" mat-card-image [src]="pokemonData.sprites.front_default" 
+    [alt]="pokemonData.name">
+    <app-pokemon-favorite [pokemonData]=""></app-pokemon-favorite>
     <mat-card-actions>
 
     </mat-card-actions>
