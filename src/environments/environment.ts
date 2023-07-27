@@ -7,18 +7,14 @@ export const environment = {
   pokedexBaseUrl: 'https://pokeapi.co/api/v2',
   pokeStatisticsUrl: 'wss://pokemon-statistics-be19c4542f3c.herokuapp.com/',
   firebase: {
-    apiKey: "AIzaSyC4PSHklv3Ah52IrbLt6eYnD5PHQdiJ5MM",
-    authDomain: "pokemon-pokedex-eb023.firebaseapp.com",
-    projectId: "pokemon-pokedex-eb023",
-    storageBucket: "pokemon-pokedex-eb023.appspot.com",
-    messagingSenderId: "987063196629",
-    appId: "1:987063196629:web:d3608e046eedd631b93b5c",
-    measurementId: "G-R4Z1R8FSXX"
+    apiKey: 'AIzaSyBP6i0xinmSjR3btGkH8imBEICKl1LxXGg',
+    authDomain: 'pokemon-pokedex-780ad.firebaseapp.com',
+    projectId: 'pokemon-pokedex-780ad',
+    storageBucket: 'pokemon-pokedex-780ad.appspot.com',
+    messagingSenderId: '334509035000',
+    appId: '1:334509035000:web:727b51692aeda3fa03da0d',
+    measurementId: 'G-XLV4ZRT6J8',
   },
-  /*
-  npm install firebase --save
-  npm install @angular/fire --save
-  */
 };
 
 /*

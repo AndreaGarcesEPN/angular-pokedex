@@ -4,8 +4,6 @@ import { StatisticsListComponent } from './statistics-list/statistics-list.compo
 import { RouterModule } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-
-
 @NgModule({
   declarations: [StatisticsListComponent],
   imports: [
@@ -16,4 +14,4 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ]),
   ],
 })
-export class StatisticsModule { }
+export class StatisticsModule {}

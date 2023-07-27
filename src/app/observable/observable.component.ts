@@ -4,31 +4,36 @@ import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-observable',
   templateUrl: './observable.component.html',
-  styleUrls: ['./observable.component.scss']
+  styleUrls: ['./observable.component.scss'],
 })
 export class ObservableComponent implements OnInit, OnDestroy {
-
-  constructor() { }
+  constructor() {}
 
   obs = new Observable((observer) => {
     setTimeout(() => {
       observer.next('1');
     }, 1000);
+
     setTimeout(() => {
       observer.next('2');
     }, 2000);
+
     setTimeout(() => {
       observer.next('3');
     }, 3000);
+
     setTimeout(() => {
       observer.next('4');
     }, 4000);
-    /*setTimeout(() => {
+    /*
+    setTimeout(() => {
       observer.error('Error en el stream');
-    }, 4000);*/
+    }, 4000);
+*/
     setTimeout(() => {
       observer.next('5');
     }, 5000);
+
     setTimeout(() => {
       observer.complete();
     }, 5000);
@@ -39,16 +44,15 @@ export class ObservableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriber = this.obs.subscribe({
       next: (value) => console.log(value),
-      error: (error) => console.log('Error' , error),
-      complete: () => console.log('El observer ha finalizado')
+      error: (error) => console.log('Error', error),
+      complete: () => console.log('El observer ha finalizado'),
     });
-    console.log('After subscribe'); //Suscribe no bloquea la ejecucion del codigo
+    console.log('After subscribe');
   }
 
   ngOnDestroy(): void {
-    if(this.subscriber) {
+    if (this.subscriber) {
       this.subscriber.unsubscribe();
     }
   }
-
 }

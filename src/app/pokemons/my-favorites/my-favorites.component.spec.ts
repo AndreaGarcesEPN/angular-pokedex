@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageNotFoundComponent } from './page-not-found.component';
+import { MyFavoritesComponent } from './my-favorites.component';
 
-describe('PageNotFoundComponent', () => {
-  let component: PageNotFoundComponent;
-  let fixture: ComponentFixture<PageNotFoundComponent>;
+describe('MyFavoritesComponent', () => {
+  let component: MyFavoritesComponent;
+  let fixture: ComponentFixture<MyFavoritesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageNotFoundComponent ]
+      declarations: [ MyFavoritesComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PageNotFoundComponent);
+    fixture = TestBed.createComponent(MyFavoritesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,26 +4,24 @@ import { webSocket } from 'rxjs/webSocket';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StatisticsService {
+  private socket$: any;
+  public battleStatisticMessage$ = new Subject<string>();
+  //Subject -> Convertir informacion y transformala a un stream (next, complete, error, subscribe)
+  // .next -> Enviar informacion al stream
+  // .complete -> Cerrar el canal
+  // .subscribe -> Subscribirnos al subject
+  // .error -> Notificar errores
 
-  private socket$: any; //Subject -> Convertir informacion y transformarla a un stream 
-                      //(next, complete, error, subsctibe)
-                      //.next -> Enviar informacion al stream
-                      //.complete -> Cerrar el canal
-                      //.subscribe ->  Suscribirnos al subject
-                      //.error -> Notoficar errores
-
-  public battleStatisticMessage = new Subject<string>();
-
-  constructor() { }
+  constructor() {}
 
   public connect(): void {
     this.socket$ = this.getNewWebSocket();
     this.socket$.subscribe({
       next: (data: any) => {
-        this.battleStatisticMessage.next(JSON.stringify(data));
+        this.battleStatisticMessage$.next(JSON.stringify(data));
       },
     });
   }
@@ -34,7 +32,7 @@ export class StatisticsService {
       openObserver: {
         next: () => {
           console.log('WebSocket conectado');
-        }
+        },
       },
       closeObserver: {
         next: () => {

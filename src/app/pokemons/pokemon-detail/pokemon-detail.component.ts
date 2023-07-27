@@ -5,40 +5,45 @@ import { PokemonService } from 'src/app/pokemon.service';
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
-  styleUrls: ['./pokemon-detail.component.scss']
+  styleUrls: ['./pokemon-detail.component.scss'],
 })
 export class PokemonDetailComponent implements OnInit {
-
   @Input()
   pokemonDetail: string;
 
   pokemonData: any;
 
-  constructor(private pokemonService: PokemonService,
-    private firestore: AngularFirestore) { }
+  constructor(
+    private pokemonService: PokemonService,
+    private firestore: AngularFirestore
+  ) {}
 
   ngOnInit(): void {
+    this.pokemonService
+      .getPokemonDetails(Number(this.pokemonDetail))
+      .subscribe({
+        next: (data) => {
+          //this.pokemonName = data.name;
+          //this.pokemonImageUrl = data.sprites.front_default;
+          this.pokemonData = data;
+          //console.log(JSON.stringify(data));
+          /* this.firestore //Agregar documentos en la colleccion con un Id autogenerado
+            .collection('pokemons')
+            .add({
+              id: data.id,
+              name: data.name,
+            })
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((e) => {
+              console.log(e);
+            });*/
 
-    this.pokemonService.getPokemonDetails(Number(this.pokemonDetail)).subscribe({
-      next: (data) => {
-        /*this.pokemonName = data.name;
-        this.pokemonImageUrl = data.sprites.front_default;*/
-        this.pokemonData = data;
-        console.log(JSON.stringify(data));
-        /*this.firestore.collection('pokemons').add({ //Agregar documentos en la coleccion con un id autogenerado
-          id: data.id,
-          name: data.name,
-        }).then((res) => {
-          console.log(res);
-        }).catch((e) => {
-          console.log(e);
-        })*/
-        this.firestore.collection('pokemons').doc(data.id.toString()).set({
-          name: data.name,
-        });
-      },
-    })
-
+          this.firestore.collection('pokemons').doc(data.id.toString()).set({
+            name: data.name,
+          });
+        },
+      });
   }
-
 }

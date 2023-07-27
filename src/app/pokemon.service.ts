@@ -4,13 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokemonService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getPokemonDetails(id: Number): Observable<any> {
+  getPokemonDetails(id: number): Observable<any> {
     return this.httpClient.get(`${environment.pokedexBaseUrl}/pokemon/${id}`);
   }
 

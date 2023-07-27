@@ -4,11 +4,11 @@ import { Observable, delay, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
-
-  /*categories = [
+  /*
+  categories = [
     {
       id: '1',
       name: 'Normal',
@@ -35,16 +35,15 @@ export class CategoryService {
     },
   ];*/
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPokemonTypes(): Observable<any> {
     //return of(this.categories).pipe(delay(5000));
     return this.http.get(`${environment.pokedexBaseUrl}/type`);
   }
 
-  getPokemonDetailsType(id: number): Observable<any>{
+  getPokemonDetailsType(id: number): Observable<any> {
     return this.http.get(`${environment.pokedexBaseUrl}/type/${id}`);
+    //'https://pokeapi.co/api/v2/type/' + id;
   }
-
 }
