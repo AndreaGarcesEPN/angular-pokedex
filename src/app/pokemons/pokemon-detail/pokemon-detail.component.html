@@ -6,6 +6,9 @@
         <img mat-card-image class="pokemon-img" [src]="pokemonData.sprites.front_default" [alt]="pokemonData.name">
     </mat-card-content>
     <mat-card-actions align="end">
+        <button mat-button color="primary" [routerLink]="['/pokemon-details', pokemonData.id]">
+            Ver Detalles
+        </button>
         <app-pokemon-favorite [pokemonData]="pokemonData"></app-pokemon-favorite>
     </mat-card-actions>
 </mat-card>
