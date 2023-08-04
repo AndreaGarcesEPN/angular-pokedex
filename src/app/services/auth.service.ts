@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  userData: any;
+
+  userSubject$ = new Subject<any>();
 
   constructor(
     public authFire: AngularFireAuth, 
@@ -16,8 +21,11 @@ export class AuthService {
     this.authFire.authState.subscribe((user) => {
       console.log('userData: ', JSON.stringify(user));
       if (user) {
+        this.userData = user;
+        this.userSubject$.next(this.userData);
         localStorage.setItem('user', JSON.stringify(user));
       } else {
+        this.userSubject$.next(null);
         localStorage.removeItem('user');
       }
     });
@@ -61,4 +69,35 @@ export class AuthService {
       u.sendEmailVerification();
     })
   }
+
+  get isLoggedIn(): boolean{
+    const user = JSON.parse(localStorage.getItem("user")!);
+    /*if(user!==null && user.emailVerified!==false) {
+      return true;
+    } else {
+      return false;
+    }*/
+    return (user!==null && user.emailVerified!==false) ? true : false;
+  }
+
+  get userInfo(): any {
+    return this.userData;
+  }
+
+  logout() {
+    this.authFire.signOut().then(() => {
+      localStorage.removeItem("user");
+      this.router.navigate(['/login']);
+    })
+  }
+
+  forgotPassword(emailResetEmail: string) {
+    return this.authFire.sendPasswordResetEmail(emailResetEmail)
+    .then(() => {
+      // Se ejecuta correctamente el proceso de envio de correo para resetear clave
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
 }

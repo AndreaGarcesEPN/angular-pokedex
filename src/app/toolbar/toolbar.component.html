@@ -8,6 +8,9 @@
             <a mat-button routerLinkActive="active" routerLink="/statistics-list"> Estad&iacute;sticas </a>
             <a mat-button routerLinkActive="active" routerLink="/pokemon-my-favorites"> Mis Favoritos </a>
 
+            <button mat-button *ngIf="userData" (click)="logout()">
+                {{userData.email}}
+            </button>
         </div>
     </mat-toolbar-row>
 
