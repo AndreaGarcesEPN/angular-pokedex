@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { environment } from 'src/environments/environment';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { environment } from 'src/environments/environment';
     CategoriesModule,
     PokemonsModule,
     StatisticsModule,
+    SecurityModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,

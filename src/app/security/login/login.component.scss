@@ -1,0 +1,33 @@
+// Alterar el comportmiento global del DOM generado (no del template)
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px; // top: 100, right: 0
+}
+
+.mat-form-field {
+    width: 100%;
+    min-width: 400px;
+}
+
+mat-card-title {
+    margin-bottom: 40px;
+}
+
+mat-card-title,
+mat-card-content {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.error {
+    padding: 16px;
+    width: 400px;
+    color: white;
+    background-color: red;
+}
